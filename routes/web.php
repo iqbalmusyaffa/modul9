@@ -43,17 +43,17 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('profile', ProfileController::class)->name('profile');
     Route::resource('employees', EmployeeController::class);
 });
-
+// Meletakkan File pada Local Disk
 Route::get('/local-disk', function() {
     Storage::disk('local')->put('local-example.txt', 'This is local example content');
     return asset('storage/local-example.txt');
 });
-
+// 4. Meletakkan File pada Public Disk
 Route::get('/public-disk', function() {
     Storage::disk('public')->put('public-example.txt', 'This is public example content');
     return asset('storage/public-example.txt');
 });
-
+// Menampilkan Isi File local
 Route::get('/retrieve-local-file', function() {
     if (Storage::disk('local')->exists('local-example.txt')) {
         $contents = Storage::disk('local')->get('local-example.txt');
@@ -63,7 +63,7 @@ Route::get('/retrieve-local-file', function() {
 
     return $contents;
 });
-
+// Menampilkan Isi File publik
 Route::get('/retrieve-public-file', function() {
     if (Storage::disk('public')->exists('public-example.txt')) {
         $contents = Storage::disk('public')->get('public-example.txt');
