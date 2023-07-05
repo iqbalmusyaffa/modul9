@@ -63,7 +63,7 @@ Route::get('/retrieve-local-file', function() {
 
     return $contents;
 });
-// Menampilkan Isi File publik
+// Menampilkan Isi File public
 Route::get('/retrieve-public-file', function() {
     if (Storage::disk('public')->exists('public-example.txt')) {
         $contents = Storage::disk('public')->get('public-example.txt');
@@ -73,15 +73,15 @@ Route::get('/retrieve-public-file', function() {
 
     return $contents;
 });
-
+// Mendownload File local
 Route::get('/download-local-file', function() {
     return Storage::download('local-example.txt', 'local file');
 });
-
+// Mendownload File public
 Route::get('/download-public-file', function() {
     return Storage::download('public/public-example.txt', 'public file');
 });
-
+//Menampilkan URL, Path dan Size dari File
 Route::get('/file-url', function() {
     // Just prepend "/storage" to the given path and return a relative URL
     $url = Storage::url('local-example.txt');
@@ -97,7 +97,7 @@ Route::get('/file-path', function() {
     $path = Storage::path('local-example.txt');
     return $path;
 });
-
+//
 Route::get('/upload-example', function() {
     return view('upload_example');
 });
